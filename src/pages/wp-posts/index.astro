@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const pageTitle = 'Astro + WordPress 🚀';
+
+const res = await fetch('https://site-developments.ru/wp-json/wp/v2/posts');
+const posts = await res.json();
+---
+
+<BaseLayout pageTitle={pageTitle}>
+	{
+  posts.map((post) => (
+    <>
+      <h2 set:html={post.title.rendered} />
+      <p set:html={post.content.rendered} />
+    </>
+  ))
+}
+</BaseLayout>
+<h1></h1>
